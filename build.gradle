@@ -1,0 +1,14 @@
+buildscript {
+    def kgpVersion = providers.gradleProperty("kgpVersion").getOrElse("2.5.0-Beta2")
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("com.android.tools.build:gradle:9.1.0")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kgpVersion}")
+        // KSP 2.3.10+ calls kotlinCompileProvider.get().libraries inside KspAATask registration
+        // when AGP built-in Kotlin is active (KspAATask.kt:282)
+        classpath("com.google.devtools.ksp:symbol-processing-gradle-plugin:2.3.12")
+    }
+}
